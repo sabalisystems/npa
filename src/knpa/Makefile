@@ -1,11 +1,9 @@
 # --
-# Copyright (c) 2012 by itopia.pl team.
-# 
+# Copyright (c) 2012 by itopia.pl team. 
 # src/knpa/Makefile
 # Author: Lukasz Marcin Podkalicki <lukasz@podkalicki.com>
 # --
 
-CXXFLAGS =
 srcdir = .
 top_srcdir = ../../../
 DIST_SUBDIRS = $(SUBDIRS)
@@ -24,12 +22,15 @@ KERNEL_VER = $(shell uname -r)
 KERNEL = /lib/modules/$(KERNEL_VER)/build
 
 all:
-	make $(CC) -C $(KERNEL) M=$(PWD) modules
+	make -C $(KERNEL) M=$(PWD) modules
 
 clean:
-	make $(CC) -C $(KERNEL) M=$(PWD) clean
+	make -C $(KERNEL) M=$(PWD) clean
 
-distdir: $(KWARF_DISTFILES)
+install:
+	make -C $(KERNEL) M=$(PWD) modules_install	
+
+distdir: $(KNPA_DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(KNPA_DISTFILES)'; for file in $$list; do \

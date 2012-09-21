@@ -56,7 +56,6 @@ LDFLAGS="-L/usr/local/lib -R/usr/local/lib"
 AC_CONFIG_FILES([
 Makefile
 src/Makefile
-src/knpa/Makefile
 src/libnpa/Makefile
 ])
 
